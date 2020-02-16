@@ -31,7 +31,7 @@ else
 fi
 
 if [ "$LAST_PUBLIC_IP" = "$CURRENT_PUBLIC_IP" ]; then 
-  printf "[${CURRENT_TIME}]Nada que actualizar" 
+  printf "[${CURRENT_TIME}]Nada que actualizar\n" 
 else
   CLOUDFLARE_ENDPOINT="https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/dns_records/${CLOUDFLARE_DNS_RECORD_ID}"
   DATA='{"type":"A","name":"'"$CLOUDFLARE_DOMAIN_NAME"'","content":"'"$CURRENT_PUBLIC_IP"'"}'
