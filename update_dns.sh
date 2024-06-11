@@ -3,8 +3,8 @@
 CURRENT_PUBLIC_IP=$(wget ifconfig.me -q -O -)
 CURRENT_TIME=$(date +'%Y-%m-%d %H:%M:%S')
 
-if [ -z "$CLOUDFLARE_TOKEN" ]; then
-  printf "[${CURRENT_TIME}]Falta la variable de entorno CLOUDFLARE_TOKEN\n"
+if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+  printf "[${CURRENT_TIME}]Falta la variable de entorno CLOUDFLARE_API_TOKEN\n"
   exit 0
 fi
 
@@ -40,7 +40,7 @@ else
   printf "[${CURRENT_TIME}]IP Publica ${CURRENT_PUBLIC_IP}\n"
 
   RESPONSE=$(curl -sX PUT "${CLOUDFLARE_ENDPOINT}" \
-              -H "Authorization: ${CLOUDFLARE_TOKEN}" \
+              -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
               -H "Content-Type: application/json" \
               --data ${DATA}
           )
